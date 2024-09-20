@@ -1,35 +1,44 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import {
+  Button,
+  Stack,
+  ToggleButton,
+  ToggleButtonGroup,
+  useColorScheme,
+} from '@mui/material';
+import { useState } from 'react';
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [defaultScheme, setDefaultScheme] = useState<'light' | 'dark'>('light');
+  const { setColorScheme } = useColorScheme();
+
+  console.log('defaultScheme', defaultScheme);
 
   return (
-    <>
+    <Stack direction="column" spacing={2} padding={2} alignItems="start">
+      <Button variant="contained">Default</Button>
+      <div className="light">
+        <Button variant="contained">Light</Button>
+      </div>
+      <div className="dark">
+        <Button variant="contained">dark</Button>
+      </div>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <ToggleButtonGroup
+          exclusive
+          value={defaultScheme}
+          onChange={(_, value) => {
+            if (value) {
+              setColorScheme(value);
+              setDefaultScheme(value);
+            }
+          }}
+        >
+          <ToggleButton value="light">Light</ToggleButton>
+          <ToggleButton value="dark">Dark</ToggleButton>
+        </ToggleButtonGroup>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </Stack>
+  );
 }
 
-export default App
+export default App;
