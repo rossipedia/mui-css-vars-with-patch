@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
@@ -25,13 +26,8 @@
     "eslint": "^8",
     "eslint-plugin-react-hooks": "^4.6.2",
     "eslint-plugin-react-refresh": "^0.4.12",
+    "patch-package": "^8.0.0",
     "typescript": "^5.6.2",
     "vite": "^5.4.6"
-  },
-  "packageManager": "pnpm@9.6.0+sha512.38dc6fba8dba35b39340b9700112c2fe1e12f10b17134715a4aa98ccf7bb035e76fd981cf0bb384dfa98f8d6af5481c2bef2f4266a24bfa20c34eb7147ce0b5e",
-  "pnpm": {
-    "patchedDependencies": {
-      "@mui/system@6.1.1": "patches/@mui__system@6.1.1.patch"
-    }
   }
 }

@@ -1,7 +1,7 @@
-diff --git a/createTheme/applyStyles.js b/createTheme/applyStyles.js
-index 9a45e1dbc39bf4bb1420683bea54b064918082a5..306eef4212320c107ac6f294851de000e766b800 100644
---- a/createTheme/applyStyles.js
-+++ b/createTheme/applyStyles.js
+diff --git a/node_modules/@mui/system/createTheme/applyStyles.js b/node_modules/@mui/system/createTheme/applyStyles.js
+index 9a45e1d..306eef4 100644
+--- a/node_modules/@mui/system/createTheme/applyStyles.js
++++ b/node_modules/@mui/system/createTheme/applyStyles.js
 @@ -69,8 +69,19 @@ export default function applyStyles(key, styles) {
        return styles;
      }
@@ -23,10 +23,10 @@ index 9a45e1dbc39bf4bb1420683bea54b064918082a5..306eef4212320c107ac6f294851de000
      }
      return {
        [selector]: styles
-diff --git a/modern/createTheme/applyStyles.js b/modern/createTheme/applyStyles.js
-index 9a45e1dbc39bf4bb1420683bea54b064918082a5..306eef4212320c107ac6f294851de000e766b800 100644
---- a/modern/createTheme/applyStyles.js
-+++ b/modern/createTheme/applyStyles.js
+diff --git a/node_modules/@mui/system/modern/createTheme/applyStyles.js b/node_modules/@mui/system/modern/createTheme/applyStyles.js
+index 9a45e1d..306eef4 100644
+--- a/node_modules/@mui/system/modern/createTheme/applyStyles.js
++++ b/node_modules/@mui/system/modern/createTheme/applyStyles.js
 @@ -69,8 +69,19 @@ export default function applyStyles(key, styles) {
        return styles;
      }
@@ -48,10 +48,10 @@ index 9a45e1dbc39bf4bb1420683bea54b064918082a5..306eef4212320c107ac6f294851de000
      }
      return {
        [selector]: styles
-diff --git a/node/createTheme/applyStyles.js b/node/createTheme/applyStyles.js
-index eda64c693231d1c3716de0bfed5b17c23e5214fd..c36b8948372712098026fe5550c33dd765065827 100644
---- a/node/createTheme/applyStyles.js
-+++ b/node/createTheme/applyStyles.js
+diff --git a/node_modules/@mui/system/node/createTheme/applyStyles.js b/node_modules/@mui/system/node/createTheme/applyStyles.js
+index eda64c6..c36b894 100644
+--- a/node_modules/@mui/system/node/createTheme/applyStyles.js
++++ b/node_modules/@mui/system/node/createTheme/applyStyles.js
 @@ -75,8 +75,19 @@ function applyStyles(key, styles) {
        return styles;
      }
