@@ -1,8 +1,10 @@
 import {
   Button,
+  Paper,
   Stack,
   ToggleButton,
   ToggleButtonGroup,
+  Typography,
   useColorScheme,
 } from '@mui/material';
 import { useState } from 'react';
@@ -11,16 +13,23 @@ function App() {
   const [defaultScheme, setDefaultScheme] = useState<'light' | 'dark'>('light');
   const { setColorScheme } = useColorScheme();
 
-  console.log('defaultScheme', defaultScheme);
-
   return (
     <Stack direction="column" spacing={2} padding={2} alignItems="start">
-      <Button variant="contained">Default</Button>
+      <Paper sx={{ padding: 2 }}>
+        <Typography variant="h6">This should change with the theme</Typography>
+        <Button variant="contained">Default</Button>
+      </Paper>
       <div className="light">
-        <Button variant="contained">Light</Button>
+        <Paper sx={{ padding: 2 }}>
+          <Typography variant="h6">This should stay in light mode</Typography>
+          <Button variant="contained">Light</Button>
+        </Paper>
       </div>
       <div className="dark">
-        <Button variant="contained">dark</Button>
+        <Paper sx={{ padding: 2 }}>
+          <Typography variant="h6">This should stay in dark mode</Typography>
+          <Button variant="contained">dark</Button>
+        </Paper>
       </div>
       <div>
         <ToggleButtonGroup

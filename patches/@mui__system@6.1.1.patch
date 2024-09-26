@@ -1,0 +1,75 @@
+diff --git a/createTheme/applyStyles.js b/createTheme/applyStyles.js
+index 9a45e1dbc39bf4bb1420683bea54b064918082a5..306eef4212320c107ac6f294851de000e766b800 100644
+--- a/createTheme/applyStyles.js
++++ b/createTheme/applyStyles.js
+@@ -69,8 +69,19 @@ export default function applyStyles(key, styles) {
+       return styles;
+     }
+     if (selector.includes('data-') || selector.includes('.')) {
++      // Filter out child elements that might be forcing another theme
++      let excludeOtherThemesSelector = '';
++      const otherThemes = Object.keys(theme.colorSchemes).filter((n) => n !== key);
++      if (otherThemes.length > 0) {
++        const otherThemesSelector = otherThemes
++          // Optional chaining is to make TS happy, but it's actually not optional because of line 74
++          .map((s) => `* ${theme.getColorSchemeSelector?.(s).replace(/\s*&$/, '')}`)
++          .join(', ');
++
++        excludeOtherThemesSelector = `:not(:has(${otherThemesSelector}))`;
++      }
+       // '*' is required as a workaround for Emotion issue (https://github.com/emotion-js/emotion/issues/2836)
+-      selector = `*:where(${selector.replace(/\s*&$/, '')}) &`;
++      selector = `*:where(${selector.replace(/\s*&$/, '')})${excludeOtherThemesSelector} &`;
+     }
+     return {
+       [selector]: styles
+diff --git a/modern/createTheme/applyStyles.js b/modern/createTheme/applyStyles.js
+index 9a45e1dbc39bf4bb1420683bea54b064918082a5..306eef4212320c107ac6f294851de000e766b800 100644
+--- a/modern/createTheme/applyStyles.js
++++ b/modern/createTheme/applyStyles.js
+@@ -69,8 +69,19 @@ export default function applyStyles(key, styles) {
+       return styles;
+     }
+     if (selector.includes('data-') || selector.includes('.')) {
++      // Filter out child elements that might be forcing another theme
++      let excludeOtherThemesSelector = '';
++      const otherThemes = Object.keys(theme.colorSchemes).filter((n) => n !== key);
++      if (otherThemes.length > 0) {
++        const otherThemesSelector = otherThemes
++          // Optional chaining is to make TS happy, but it's actually not optional because of line 74
++          .map((s) => `* ${theme.getColorSchemeSelector?.(s).replace(/\s*&$/, '')}`)
++          .join(', ');
++
++        excludeOtherThemesSelector = `:not(:has(${otherThemesSelector}))`;
++      }
+       // '*' is required as a workaround for Emotion issue (https://github.com/emotion-js/emotion/issues/2836)
+-      selector = `*:where(${selector.replace(/\s*&$/, '')}) &`;
++      selector = `*:where(${selector.replace(/\s*&$/, '')})${excludeOtherThemesSelector} &`;
+     }
+     return {
+       [selector]: styles
+diff --git a/node/createTheme/applyStyles.js b/node/createTheme/applyStyles.js
+index eda64c693231d1c3716de0bfed5b17c23e5214fd..c36b8948372712098026fe5550c33dd765065827 100644
+--- a/node/createTheme/applyStyles.js
++++ b/node/createTheme/applyStyles.js
+@@ -75,8 +75,19 @@ function applyStyles(key, styles) {
+       return styles;
+     }
+     if (selector.includes('data-') || selector.includes('.')) {
++      // Filter out child elements that might be forcing another theme
++      let excludeOtherThemesSelector = '';
++      const otherThemes = Object.keys(theme.colorSchemes).filter((n) => n !== key);
++      if (otherThemes.length > 0) {
++        const otherThemesSelector = otherThemes
++          // Optional chaining is to make TS happy, but it's actually not optional because of line 74
++          .map((s) => `* ${theme.getColorSchemeSelector?.(s).replace(/\s*&$/, '')}`)
++          .join(', ');
++
++        excludeOtherThemesSelector = `:not(:has(${otherThemesSelector}))`;
++      }
+       // '*' is required as a workaround for Emotion issue (https://github.com/emotion-js/emotion/issues/2836)
+-      selector = `*:where(${selector.replace(/\s*&$/, '')}) &`;
++      selector = `*:where(${selector.replace(/\s*&$/, '')})${excludeOtherThemesSelector} &`;
+     }
+     return {
+       [selector]: styles
